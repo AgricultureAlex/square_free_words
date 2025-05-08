@@ -142,6 +142,7 @@ source, n = str(input(">> Input a seed string: ")), int(input(">> How long shoul
 # If "random" was inputed for source, use random algorithm
 if source.lower() != "random" and source.lower() != "rand":
     final_string = get_square_free_word_seeded(source, n)
+    k = cntDistinct(source)
 else:
     # Get alphabet size and alphabet start character
     k = int(input(">> You indicated random. What size k should your alphabet be? "))
@@ -154,8 +155,8 @@ else:
         quit()
     final_string = get_square_free_word_unseeded(k, n, start)
 
-
 k_actual = cntDistinct(final_string)
 print("With seed", source)
-print("The square-free string of max length was of length", len(final_string), "with", k_actual, "distinct notes out of", k, "possible notes: ")
+print("The square-free string of max length was of length", len(final_string),\
+      "with", k_actual, "distinct notes out of", k, "possible notes: ")
 print(final_string)
