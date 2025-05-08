@@ -152,7 +152,7 @@ except(Exception):
 try:
     n = int(input(">> How long should the string be? Input a number, then press enter: "))
 except(Exception):
-    print("Error: Length of string needs to be a whole number.")
+    print("Error: Length of string needs to be a whole number. Or, you may have pasted in input with multiple lines for the seed string. Use one line only.")
     quit()
 
     
