@@ -44,7 +44,7 @@ def get_square_free_word_seeded(seed, n):
     square_free_result = "" # empty word
     i = 0 # number of iterations
     ptr = 0 # ptr to the part of the seed we're using
-    while (len(square_free_result) < n) and i < 100000:
+    while (len(square_free_result) < n) and i < 2 * len(seed) and i < 100000:
         square_free_result += seed[ptr]
         i, ptr = i + 1, (ptr + 1) % len(seed) # increment iteration count and ptr (cyclic)
         #print(square_free_result)
@@ -65,7 +65,12 @@ def get_square_free_word_seeded(seed, n):
     # iteration limit message
     if i >= 100000:
         print()
-        print("You've reached the hardcoded 100,000 iteration limit.")
+        print("You've reached the hardcoded 100,000 iteration limit. Contact me if you need it higher.")
+    elif i >= 2 * len(seed):
+        print()
+        print("We used all characters in your seed string twice.")
+        print("Appending %c to the output word"%(square_free_result[-1]),\
+              "would make the word repeat %s."%square_free_result)
 
     return longest_result # the above is verified to return the longest
 
@@ -83,7 +88,8 @@ alphabet of fixed size k.
 def get_square_free_word_unseeded(k, n, alphabet_start):
     # Check if it's feasible to generate a length-n square-free word over alphabet of size k
     if k <= 2:
-        print("Error: To generate a length n=%d word, you must need an alphabet of size greater than k=%d.", n, k)
+        print("Error: It is impossible to generate a square-free word longer than %d characters",\
+              "using only %d distinct source characters. Increase %d.", n, k, k)
         quit()
 
     max_length, longest_result = 0, "" # save the longest length word we've seen so far
@@ -113,7 +119,7 @@ def get_square_free_word_unseeded(k, n, alphabet_start):
     # iteration limit message
     if i >= 100000:
         print()
-        print("Error: You've reached the hardcoded 100,000 iteration limit.")
+        print("You've reached the hardcoded 100,000 iteration limit.")
 
     return longest_result # the above is verified to return the longest
 
@@ -137,25 +143,52 @@ def cntDistinct(str):
  
 # The source from which we generate a square free word
 source ="1553454345452127135434312713245311165" # this is the pitch sequence for the Epitaph of Seikilos
-source, n = str(input(">> Input a seed string: ")), int(input(">> How long should the string be? "))
+try:
+    source = str(input(">> Input a seed string, then press enter: "))
+except(Exception):
+    print("Error: Input error with seed string. Possible cause - must be a single line, no newlines within,"\
+          "don't copy-paste text with multiple lines.")
+    quit()
+try:
+    n = int(input(">> How long should the string be? Input a number, then press enter: "))
+except(Exception):
+    print("Error: Length of string needs to be a whole number.")
+    quit()
 
+    
 # If "random" was inputed for source, use random algorithm
 if source.lower() != "random" and source.lower() != "rand":
-    final_string = get_square_free_word_seeded(source, n)
     k = cntDistinct(source)
+
+    # Check if it's feasible to generate a length-n square-free word over alphabet of size k
+    if k <= 2:
+        print("Error: It is impossible to generate a square-free word longer than %d characters",\
+              "using only %d distinct source characters."\
+              "Use additional distinct characters in your seed string."%(n, k))
+        quit()
+    
+    # If feasible, proceed
+    final_string = get_square_free_word_seeded(source, n)
 else:
     # Get alphabet size and alphabet start character
-    k = int(input(">> You indicated random. What size k should your alphabet be? "))
     try:
-        start = ord(input(">> What character do you want the alphabet to start at? Press enter for default (1). "))
-        if start == 0:
-            start = ord('1')
+        k = int(input(">> You indicated random. What size k should your alphabet be? "))
     except(Exception):
-        print("Error: Please enter a single character for alphabet start.")
+        print("Error: Please input a whole number >= 1.")
+        quit()
+    try:
+        start = input(">> What character do you want the alphabet to start at? Press enter for default, 1. ")
+        if start == "":
+            start = ord('1')
+        else:
+            start = ord(start)
+    except(Exception):
+        print("Error: Please enter a single character for alphabet start point.")
         quit()
     final_string = get_square_free_word_unseeded(k, n, start)
 
 k_actual = cntDistinct(final_string)
+print()
 print("With seed", source)
 print("The square-free string of max length was of length", len(final_string),\
       "with", k_actual, "distinct notes out of", k, "possible notes: ")
