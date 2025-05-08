@@ -15,11 +15,7 @@ Here, a **word** is a finite[^***] string of characters, such as _abc_ or _123_.
 
 A **[square-free word](https://en.wikipedia.org/wiki/Square-free_word)** is one that does not repeat patterns contiguously. For example, *aba* is OK because the *a*s are separated, but *abab* is not because the *ab*s are contiguous. Also, the square need not use up the entire word. For example, *caac* has a square *aa*, but neither *c* is part of it. The term **square** comes from algebra: one can write $$xx = x^2$$.
 
-The program in this repository transforms a *specific* input string that uses $$k$$ characters (e.g. *abcbac* uses 3 characters — *a*, *b*, and *c*) into a *square-free* string of a length specified by the user (e.g. *abcbac* is 6 characters long).
-
-The algorithm used is described by Rampersad, as paraphrased [in this paper](url), under "Preliminaries and the algorithm."[^**]
-
-Here is the algorithm in full.
+The program in this repository transforms a *specific* input string that uses $$k$$ characters (e.g. *abcbac* uses 3 characters — *a*, *b*, and *c*) into a *square-free* string of a length specified by the user (e.g. *abcbac* is 6 characters long). The algorithm used is described by Rampersad, as paraphrased in [this paper](url) under "Preliminaries and the algorithm."[^**]
 
 >In his WORDS'2013 lecture, Rampersad described the following algorithm to construct k-ary square-free words (the same algorithm was used in [1] to build words avoiding approximate squares). Starting with an empty word, one appends to its end one letter per round; the letter is given by a uniform random source. If the current word ends with an r-square, then one dismisses the right half of this square. The algorithm works until the constructed word reaches the required length n.
 
