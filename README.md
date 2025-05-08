@@ -7,7 +7,7 @@ Download the .py file and run it.
 
 # Suggested Inputs
 1. Enter seed `12341234` and length `14` to demonstrate the program.
-2. Enter seed `1553454345452127135434312713245311165` with any length. This is the [Epitaph of Seikilos](https://en.wikipedia.org/wiki/Seikilos_epitaph) in scale degrees.
+2. Enter seed `1553454345452127135434312713245311165` with lengths `3`, `24`, and `1000`. This is the [Epitaph of Seikilos](https://en.wikipedia.org/wiki/Seikilos_epitaph) in scale degrees.
 3. Enter seed `rand` or `random` and follow the instructions to get truly random square-free strings.
 
 # Purpose
