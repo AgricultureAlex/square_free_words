@@ -86,12 +86,6 @@ alphabet of fixed size k.
         letters_A starts ASCII indexing at A
 """
 def get_square_free_word_unseeded(k, n, alphabet_start):
-    # Check if it's feasible to generate a length-n square-free word over alphabet of size k
-    if k <= 2:
-        print("Error: It is impossible to generate a square-free word longer than %d characters",\
-              "using only %d distinct source characters. Increase %d.", n, k, k)
-        quit()
-
     max_length, longest_result = 0, "" # save the longest length word we've seen so far
     square_free_result = "" # empty word
     i = 0 # number of iterations
@@ -123,7 +117,15 @@ def get_square_free_word_unseeded(k, n, alphabet_start):
 
     return longest_result # the above is verified to return the longest
 
-
+""" 
+Function to check if square-freeness even exists
+"""
+def check_feasible(k, n):
+    # Check if it's feasible to generate a length-n square-free word over alphabet of size k
+    if (k < 1 or n < 1) or (k == 1 and n >= 2) or (k == 2 and n >= 4):
+        print("Error: It is impossible to generate a square-free word longer than n=%d characters"%n,\
+            "using only k=%d distinct source characters Either increase k, decrease n, or both."%k)
+        quit()
 
 # Code to count distinct charactes from GeeksForGeeks
 # https://www.geeksforgeeks.org/count-the-number-of-unique-characters-in-a-given-string/
@@ -150,7 +152,7 @@ except(Exception):
           "don't copy-paste text with multiple lines.")
     quit()
 try:
-    n = int(input(">> How long should the string be? Input a number, then press enter: "))
+    n = int(input(">> How long should the string be? Input a whole number, then press enter: "))
 except(Exception):
     print("Error: Length of string needs to be a whole number. Or, you may have pasted in input with multiple lines for the seed string. Use one line only.")
     quit()
@@ -161,11 +163,7 @@ if source.lower() != "random" and source.lower() != "rand":
     k = cntDistinct(source)
 
     # Check if it's feasible to generate a length-n square-free word over alphabet of size k
-    if k <= 2:
-        print("Error: It is impossible to generate a square-free word longer than %d characters",\
-              "using only %d distinct source characters."\
-              "Use additional distinct characters in your seed string."%(n, k))
-        quit()
+    check_feasible(k, n)
     
     # If feasible, proceed
     final_string = get_square_free_word_seeded(source, n)
@@ -178,6 +176,7 @@ else:
         quit()
     try:
         start = input(">> What character do you want the alphabet to start at? Press enter for default, 1. ")
+        # Check if user wanted default, convert to a number
         if start == "":
             start = ord('1')
         else:
@@ -185,6 +184,9 @@ else:
     except(Exception):
         print("Error: Please enter a single character for alphabet start point.")
         quit()
+    
+    # Check if it's feasible to generate a length-n square-free word over alphabet of size k
+    check_feasible(k, n)
     final_string = get_square_free_word_unseeded(k, n, start)
 
 k_actual = cntDistinct(final_string)
