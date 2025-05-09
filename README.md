@@ -1,5 +1,5 @@
 # How To Use (I do not code)
-1. Click here and follow the instructions: [Python Trinket]([https://trinket.io/python3/3196758d83ba?outputOnly=true&runOption=run](https://trinket.io/python/01bcd39eab60?outputOnly=true&runOption=run)
+1. Click here and follow the instructions: [Python Trinket](https://trinket.io/python/01bcd39eab60?outputOnly=true&runOption=run).
 2. If the program terminates, press Run (top-left) again. (Trinket stops running on super large inputs — if you need that, you'll need to run this code somewhere else.)
 
 # How To Use (I code)
