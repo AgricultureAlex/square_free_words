@@ -17,7 +17,13 @@ A **[square-free word](https://en.wikipedia.org/wiki/Square-free_word)** is one 
 
 The program in this repository transforms a *specific* input string that uses $$k$$ characters (e.g. *abcbac* uses 3 characters — *a*, *b*, and *c*) into a *square-free* string of a length specified by the user (e.g. *abcbac* is 6 characters long). The algorithm used is described by Rampersad, as paraphrased in [this paper](https://www.sciencedirect.com/science/article/pii/S0304397515006489?via%3Dihub) under "Preliminaries and the algorithm."[^**]
 
->In his WORDS'2013 lecture, Rampersad described the following algorithm to construct k-ary square-free words (the same algorithm was used in [1] to build words avoiding approximate squares). Starting with an empty word, one appends to its end one letter per round; the letter is given by a uniform random source. If the current word ends with an r-square, then one dismisses the right half of this square. The algorithm works until the constructed word reaches the required length n.
+>In his WORDS'2013 lecture, Rampersad described the following algorithm to construct *k*-ary square-free words (the same algorithm was used in [1] to build words avoiding approximate squares). Starting with an empty word, one appends to its end one letter per round; the letter is given by a uniform random source. If the current word ends with an *r*-square, then one dismisses the right half of this square. The algorithm works until the constructed word reaches the required length *n*.
+
+# TODOs
+- [x] make a working version
+- [x] allow random input
+- [ ] implement Shur's algorithm for inputs with *k - 1* distinct characters instead of *k*
+- [ ] implement standard music theory alphabet option $$[\texttt{0}, \texttt{1}, \dots, \texttt{9}, \texttt{t}, \texttt{e}]$$ — the 12 notes, but in single characters (instead of "10" and "11")
 
 [^***]: Depending on the topic, words can also be infinite, like *3.1415926535...*. Let's focus on finite words.
 [^*]: In some texts, the concept of a *word* is only defined in relation to a *language*. Loosely speaking, a language is a set of rules to specify which strings that are "in" or "out" of the language. A good example: "hello" is a word in English, but "hllelo" is not.
