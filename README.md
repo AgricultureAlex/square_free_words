@@ -19,6 +19,8 @@ The program in this repository transforms a *specific* input string that uses _k
 
 >In his WORDS'2013 lecture, Rampersad described the following algorithm to construct *k*-ary square-free words (the same algorithm was used in [1] to build words avoiding approximate squares). Starting with an empty word, one appends to its end one letter per round; the letter is given by a uniform random source. If the current word ends with an *r*-square, then one dismisses the right half of this square. The algorithm works until the constructed word reaches the required length *n*.
 
+One musically interesting characterstic of the longest string the algorithm can generate for each _specific seed_ is its "all-but-repeat" structure. For example, the longest output possible on input _abc_ is _abc|ab_, and for input _123_ it is _123|12_, where the | symbol is for visual demarcation only. This can lead to interesting musical results — it "all-but-repeats" at the longest string.
+
 # TODOs
 - [x] make a working version
 - [x] allow random input
